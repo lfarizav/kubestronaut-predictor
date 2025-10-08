@@ -16,7 +16,7 @@
 **Luis Felipe Ariza Vesga** 
 emails: lfarizav@gmail.com, lfarizav@unal.edu.co
 # Description
-Welcome to the **House Price Predictor** project! This is a real-world, end-to-end MLOps use case designed to help you master the art of building and operationalizing machine learning pipelines.
+Welcome to the **Kubestronaut Certification Predictor** project! This is a fake, end-to-end MLOps use case designed to help you master the art of building and operationalizing machine learning pipelines.
 
 You'll start from raw data and move through data preprocessing, feature engineering, experimentation, model tracking with MLflow, and optionally using Jupyter for exploration – all while applying industry-grade tooling.
 
@@ -61,9 +61,8 @@ To begin, ensure the following tools are installed on your system:
 2. **Clone your forked copy:**
 
    ```bash
-   # Replace xxxxxx with your GitHub username or org
-   git clone https://github.com/xxxxxx/house-price-predictor.git
-   cd house-price-predictor
+   git clone https://github.com/xxxxxx/kubestronaut-certification-predictor.git
+   cd kubestronaut-certification-predictor
    ```
 
 3. **Setup Python Virtual Environment using UV:**
@@ -87,14 +86,15 @@ To track experiments and model runs:
 
 ```bash
 cd deployment/mlflow
-docker compose -f mlflow-docker-compose.yml up -d
+docker compose up -d
 docker compose ps
 ```
 
 > 🐧 **Using Podman?** Use this instead:
 
 ```bash
-podman compose -f mlflow-docker-compose.yml up -d
+cd deployment/mlflow
+podman compose up -d
 podman compose ps
 ```
 
@@ -179,14 +179,12 @@ Be sure to replace `http://localhost:8000/predict` with actual endpoint based on
 
 ## 🧠 Learn More About MLOps
 
-This project is part of the [**MLOps Bootcamp**](https://schoolofdevops.com) at School of DevOps, where you'll learn how to:
+In this project you'll learn how to:
 
 - Build and track ML pipelines
 - Containerize and deploy models
-- Automate training workflows using GitHub Actions or Argo Workflows
+- Automate training workflows using GitHub Actions or Argo or Flux or Jenkins Workflows
 - Apply DevOps principles to Machine Learning systems
-
-🔗 [Get Started with MLOps →](https://schoolofdevops.com)
 
 ---
 
@@ -197,5 +195,5 @@ We welcome contributions, issues, and suggestions to make this project even bett
 ---
 
 Happy Learning!  
-— Team **School of DevOps**
+— Team **De la parla al cluster**
 # kubestronaut-certification-predictor

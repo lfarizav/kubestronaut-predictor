@@ -7,7 +7,7 @@
       </a>
     </td>
     <td style="border-collapse: collapse; border: none; vertical-align: center;">
-      <b><font size = "5">Kubestronaut Certification Predictor</font></b>
+      <b><font size = "5">🏠 Kubestronaut Certification Predictor</font></b>
     </td>
   </tr>
 </table>
@@ -15,8 +15,6 @@
 # Author
 **Luis Felipe Ariza Vesga** 
 emails: lfarizav@gmail.com, lfarizav@unal.edu.co
-
-# 🏠 Kubestronaut Certification Predictor
 
 Welcome to the **House Price Predictor** project! This is a real-world, end-to-end MLOps use case designed to help you master the art of building and operationalizing machine learning pipelines.
 

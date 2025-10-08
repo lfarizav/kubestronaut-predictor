@@ -188,12 +188,6 @@ In this project you'll learn how to:
 
 ---
 
-## 🤝 Contributing
-
-We welcome contributions, issues, and suggestions to make this project even better. Feel free to fork, explore, and raise PRs!
-
----
-
 Happy Learning!  
 — Team **De la parla al cluster**
 # kubestronaut-certification-predictor

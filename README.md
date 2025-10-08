@@ -16,7 +16,7 @@
 **Luis Felipe Ariza Vesga** 
 emails: lfarizav@gmail.com, lfarizav@unal.edu.co
 # Description
-Welcome to the **Kubestronaut Certification Predictor** project! This is a fake, end-to-end MLOps use case designed to help you master the art of building and operationalizing machine learning pipelines.
+Welcome to the **Kubestronaut Certification Predictor** project! This is a fake modified forked from https://github.com/mlopsbootcamp/hosue-price-predictor, end-to-end MLOps use case designed to help you master the art of building and operationalizing machine learning pipelines.
 
 You'll start from raw data and move through data preprocessing, feature engineering, experimentation, model tracking with MLflow, and optionally using Jupyter for exploration – all while applying industry-grade tooling.
 

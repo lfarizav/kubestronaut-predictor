@@ -190,4 +190,5 @@ In this project you'll learn how to:
 
 Happy Learning!  
 — Team **De la parla al cluster**
+🔗 [More info at →](https://delaparlaalcluster.org)
 # kubestronaut-certification-predictor

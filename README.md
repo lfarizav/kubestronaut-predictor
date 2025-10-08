@@ -1,11 +1,26 @@
-# 🏠 House Price Predictor – An MLOps Learning Project
+<table style="border-collapse: collapse; border: none;">
+  <tr style="border-collapse: collapse; border: none;">
+    <td style="border-collapse: collapse; border: none;">
+      <a href="http://www.openairinterface.org/">
+         <img src="https://gitlab.eurecom.fr/uploads/-/system/user/avatar/716/avatar.png?width=800" alt="" border=3 height=50 width=50>
+         </img>
+      </a>
+    </td>
+    <td style="border-collapse: collapse; border: none; vertical-align: center;">
+      <b><font size = "5">Kubestronaut Certification Predictor</font></b>
+    </td>
+  </tr>
+</table>
+
+# Author
+**Luis Felipe Ariza Vesga** 
+emails: lfarizav@gmail.com, lfarizav@unal.edu.co
+
+# 🏠 Kubestronaut Certification Predictor
 
 Welcome to the **House Price Predictor** project! This is a real-world, end-to-end MLOps use case designed to help you master the art of building and operationalizing machine learning pipelines.
 
 You'll start from raw data and move through data preprocessing, feature engineering, experimentation, model tracking with MLflow, and optionally using Jupyter for exploration – all while applying industry-grade tooling.
-
-> 🚀 **Want to master MLOps from scratch?**  
-Check out the [MLOps Bootcamp at School of DevOps](https://schoolofdevops.com) to level up your skills.
 
 ---
 

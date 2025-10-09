@@ -14,9 +14,9 @@
 
 # Author
 **Luis Felipe Ariza Vesga** 
-emails: lfarizav@gmail.com, lfarizav@unal.edu.co
+Emails: lfarizav@gmail.com, lfarizav@unal.edu.co
 # Description
-Welcome to the **Kubestronaut Certification Predictor** project! This is a fake modified forked from https://github.com/mlopsbootcamp/hosue-price-predictor, end-to-end MLOps use case designed to help you master the art of building and operationalizing machine learning pipelines.
+Welcome to the **Kubestronaut Certification Predictor** project! This is a fake modified project forked from https://github.com/mlopsbootcamp/hosue-price-predictor, end-to-end MLOps use case designed to help you master the art of building and operationalizing machine learning pipelines.
 
 You'll start from raw data and move through data preprocessing, feature engineering, experimentation, model tracking with MLflow, and optionally using Jupyter for exploration – all while applying industry-grade tooling.
 
@@ -25,7 +25,7 @@ You'll start from raw data and move through data preprocessing, feature engineer
 ## 📦 Project Structure
 
 ```
-house-price-predictor/
+kuestronaut-certification-predictor/
 ├── configs/                # YAML-based configuration for models
 ├── data/                   # Raw and processed datasets
 ├── deployment/
@@ -61,7 +61,7 @@ To begin, ensure the following tools are installed on your system:
 2. **Clone your forked copy:**
 
    ```bash
-   git clone https://github.com/xxxxxx/kubestronaut-certification-predictor.git
+   git clone https://github.com/lfarizav/kubestronaut-certification-predictor.git
    cd kubestronaut-certification-predictor
    ```
 
@@ -121,7 +121,7 @@ python -m jupyterlab
 Clean and preprocess the raw housing dataset:
 
 ```bash
-python src/data/run_processing.py   --input data/raw/house_data.csv   --output data/processed/cleaned_house_data.csv
+python src/data/run_processing.py   --input data/raw/kubestronaut-prediction-data  --output data/processed/cleaned-kubestronaut-prediction-data.csv
 ```
 
 ---
@@ -169,7 +169,7 @@ curl -X POST "http://localhost:8000/predict" \
   "bathrooms": 2,
   "location": "suburban",
   "year_built": 2000,
-  "condition": fair
+  "condition": :fair"
 }'
 
 ```

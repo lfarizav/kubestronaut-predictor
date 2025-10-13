@@ -121,7 +121,7 @@ python -m jupyterlab
 Clean and preprocess the raw housing dataset:
 
 ```bash
-python src/data/run_processing.py   --input data/raw/kubestronaut-prediction-data  --output data/processed/cleaned-kubestronaut-prediction-data.csv
+python src/data/run_processing.py   --input data/raw/kubestronaut_predictor_data  --output data/processed/cleaned_kubestronaut_predictor_data.csv
 ```
 
 ---
@@ -131,7 +131,7 @@ python src/data/run_processing.py   --input data/raw/kubestronaut-prediction-dat
 Apply transformations and generate features:
 
 ```bash
-python src/features/engineer.py   --input data/processed/cleaned_house_data.csv   --output data/processed/featured_house_data.csv   --preprocessor models/trained/preprocessor.pkl
+python src/features/engineer.py   --input data/processed/cleaned_kubestronaut_predictor_data.csv   --output data/processed/featured_kubestronaut_predictor_data.csv   --preprocessor models/trained/preprocessor.pkl
 ```
 
 ---
@@ -141,7 +141,7 @@ python src/features/engineer.py   --input data/processed/cleaned_house_data.csv 
 Train your model and log everything to MLflow:
 
 ```bash
-python src/models/train_model.py   --config configs/model_config.yaml   --data data/processed/featured_house_data.csv   --models-dir models   --mlflow-tracking-uri http://localhost:5555
+python src/models/train_model.py   --config configs/model_config.yaml   --data data/processed/featured_kubestronaut_predictor_data.csv   --models-dir models   --mlflow-tracking-uri http://localhost:5555
 ```
 
 ---

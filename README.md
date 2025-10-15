@@ -121,7 +121,7 @@ python -m jupyterlab
 Clean and preprocess the raw housing dataset:
 
 ```bash
-python src/data/run_processing.py   --input data/raw/kubestronaut_predictor_data  --output data/processed/cleaned_kubestronaut_predictor_data.csv
+python src/data/run_processing.py   --input data/raw/kubestronaut_predictor_data.csv   --output data/processed/cleaned_kubestronaut_predictor_data.csv
 ```
 
 ---

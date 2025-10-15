@@ -164,12 +164,13 @@ You could also test predictions with FastAPI directly using
 curl -X POST "http://localhost:8000/predict" \
 -H "Content-Type: application/json" \
 -d '{
-  "sqft": 1500,
-  "bedrooms": 3,
-  "bathrooms": 2,
+  "theory_hours": 1500,
+  "lab_hours": 1500,
+  "number_full_exam_done": 2,
+  "cncf_try_numbers": 2,
   "location": "suburban",
-  "year_built": 2000,
-  "condition": :fair"
+  "born_year": 2000,
+  "selfassessment": "poor"
 }'
 
 ```

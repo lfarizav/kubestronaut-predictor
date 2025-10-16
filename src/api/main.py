@@ -1,21 +1,20 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from inference import predict_price, batch_predict
-from schemas import HousePredictionRequest, PredictionResponse
+from inference import predict_kubestronaut_result, batch_predict
+from schemas import KubestronautPredictionRequest, PredictionResponse
 
 # Initialize FastAPI app with metadata
 app = FastAPI(
-    title="House Price Prediction API",
+    title="Kubestronaut results Prediction API",
     description=(
-        "An API for predicting house prices based on various features. "
-        "This application is part of the MLOps Bootcamp by School of Devops. "
-        "Authored by Gourav Shah."
+        "An API for predicting kubestronaut results based on various features. "
+        "This application was created by Gourav Shah and modified my Luis Felipe Ariza Vesga (lfarizav@gmail.com)."
     ),
     version="1.0.0",
     contact={
-        "name": "School of Devops",
-        "url": "https://schoolofdevops.com",
-        "email": "learn@schoolofdevops.com",
+        "name": "delaparlaalcluster",
+        "url": "https://delaparlaalcluster.org",
+        "email": "lfarizav@gmail.com",
     },
     license_info={
         "name": "Apache 2.0",
@@ -39,10 +38,10 @@ async def health_check():
 
 # Prediction endpoint
 @app.post("/predict", response_model=PredictionResponse)
-async def predict(request: HousePredictionRequest):
-    return predict_price(request)
+async def predict(request: KubestronautPredictionRequest):
+    return predict_kubestronaut_result(request)
 
 # Batch prediction endpoint
 @app.post("/batch-predict", response_model=list)
-async def batch_predict_endpoint(requests: list[HousePredictionRequest]):
+async def batch_predict_endpoint(requests: list[KubestronautPredictionRequest]):
     return batch_predict(requests)

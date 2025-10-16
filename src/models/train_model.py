@@ -111,7 +111,7 @@ def main(args):
 
         # Add a human-readable description
         description = (
-            f"Model for predicting house prices.\n"
+            f"Model for predicting Kubestronaut results.\n"
             f"Algorithm: {model_cfg['best_model']}\n"
             f"Hyperparameters: {model_cfg['parameters']}\n"
             f"Features used: All features in the dataset except the target variable\n"

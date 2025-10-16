@@ -6,17 +6,17 @@ import os
 
 # Set the page configuration (must be the first Streamlit command)
 st.set_page_config(
-    page_title="House Price Predictor",
+    page_title="Certified Kubestronaut Result Predictor",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
 # Add title and description
-st.title("House Price Prediction")
+st.title("Certified Kubestronaut Result Predictor")
 st.markdown(
     """
     <p style="font-size: 18px; color: gray;">
-        A simple MLOps demonstration project for real-time house price prediction
+        A demonstration project for real-time Kubestronaut Results Predictor using Machine Learning, FastAPI, and Streamlit.
     </p>
     """,
     unsafe_allow_html=True,
@@ -29,39 +29,48 @@ col1, col2 = st.columns(2, gap="large")
 with col1:
     st.markdown('<div class="card">', unsafe_allow_html=True)
     
-    # Square Footage slider
-    st.markdown(f"<p><strong>Square Footage:</strong> <span id='sqft-value'></span></p>", unsafe_allow_html=True)
-    sqft = st.slider("", 500, 5000, 1500, 50, label_visibility="collapsed", key="sqft")
-    st.markdown(f"<script>document.getElementById('sqft-value').innerText = '{sqft} sq ft';</script>", unsafe_allow_html=True)
+    # Theory hours slider
+    st.markdown(f"<p><strong>Theory hours:</strong> <span id='theory-hours-value'></span></p>", unsafe_allow_html=True)
+    theory_hours = st.slider("", 1, 2000, 1152, 1, label_visibility="collapsed", key="theory_hours")
+    st.markdown(f"<script>document.getElementById('theory-hours-value').innerText = '{theory_hours} theory_hours';</script>", unsafe_allow_html=True)
+
+    # Laboratory hours slider
+    st.markdown(f"<p><strong>Laboratory hours:</strong> <span id='lab-hours-value'></span></p>", unsafe_allow_html=True)
+    lab_hours = st.slider("", 1, 2000, 1152, 1, label_visibility="collapsed", key="lab_hours")
+    st.markdown(f"<script>document.getElementById('lab-hours-value').innerText = '{lab_hours} lab_hours';</script>", unsafe_allow_html=True)
+
+    # number_full_exam_done and cncf_try_numbers: in two columns
+    number_full_exam_done, cncf_try_numbers = st.columns(2)
+    with number_full_exam_done:
+        st.markdown("<p><strong>Number full exams done</strong></p>", unsafe_allow_html=True)
+        number_full_exam_done = st.selectbox("", options=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], index=8, label_visibility="collapsed")
     
-    # Bedrooms and Bathrooms in two columns
-    bed_col, bath_col = st.columns(2)
-    with bed_col:
-        st.markdown("<p><strong>Bedrooms</strong></p>", unsafe_allow_html=True)
-        bedrooms = st.selectbox("", options=[1, 2, 3, 4, 5, 6], index=2, label_visibility="collapsed")
-    
-    with bath_col:
-        st.markdown("<p><strong>Bathrooms</strong></p>", unsafe_allow_html=True)
-        bathrooms = st.selectbox("", options=[1, 1.5, 2, 2.5, 3, 3.5, 4], index=2, label_visibility="collapsed")
+    with cncf_try_numbers:
+        st.markdown("<p><strong>How Many real CNCF Exams Has You Failed</strong></p>", unsafe_allow_html=True)
+        cncf_try_numbers = st.selectbox("", options=[1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], index=5, label_visibility="collapsed")
     
     # Location dropdown
-    st.markdown("<p><strong>Location</strong></p>", unsafe_allow_html=True)
-    location = st.selectbox("", options=["Urban", "Suburban", "Rural", "Urban", "Waterfront", "Mountain"], index=1, label_visibility="collapsed")
+    st.markdown("<p><strong>Location region of the Kubestronaut candidate</strong></p>", unsafe_allow_html=True)
+    location = st.selectbox("", options=["Urban", "Suburban", "Rural", "Waterfront", "Mountain"], index=1, label_visibility="collapsed")
     
     # Year Built slider
-    st.markdown(f"<p><strong>Year Built:</strong> <span id='year-value'></span></p>", unsafe_allow_html=True)
-    year_built = st.slider("", 1900, 2025, 2000, 1, label_visibility="collapsed", key="year")
-    st.markdown(f"<script>document.getElementById('year-value').innerText = '{year_built}';</script>", unsafe_allow_html=True)
+    st.markdown(f"<p><strong>Kubestronaut's birth year:</strong> <span id='born_year-value'></span></p>", unsafe_allow_html=True)
+    born_year = st.slider("", 1950, 2025, 1990, 1, label_visibility="collapsed", key="born_year")
+    st.markdown(f"<script>document.getElementById('born_year-value').innerText = '{born_year} born_year';</script>", unsafe_allow_html=True)
+    
+    # Selfassesment dropdown
+    st.markdown("<p><strong>Selfassessment of the Kubestronaut candidate</strong></p>", unsafe_allow_html=True)
+    selfassessment = st.selectbox("", options=["Good", "Excelent", "Fair", "Poor"], index=1, label_visibility="collapsed")
     
     # Predict button
-    predict_button = st.button("Predict Price", use_container_width=True)
+    predict_button = st.button("Predict Kubestronaut Results", use_container_width=True)
     
     st.markdown('</div>', unsafe_allow_html=True)
 
 # Results section
 with col2:
     st.markdown('<div class="card">', unsafe_allow_html=True)
-    st.markdown("<h2>Prediction Results</h2>", unsafe_allow_html=True)
+    st.markdown("<h2>Certified Kubestronaut Results</h2>", unsafe_allow_html=True)
     
     # If button is clicked, show prediction
     if predict_button:
@@ -69,12 +78,13 @@ with col2:
         with st.spinner("Calculating prediction..."):
             # Prepare data for API call
             api_data = {
-                "sqft": sqft,
-                "bedrooms": bedrooms,
-                "bathrooms": bathrooms,
+                "theory_hours": theory_hours,
+                "lab_hours": lab_hours,
+                "number_full_exam_done": number_full_exam_done,
+                "cncf_try_numbers": cncf_try_numbers,
                 "location": location.lower(),
-                "year_built": year_built,
-                "condition": "Good"
+                "born_year": born_year,
+                "selfassessment": selfassessment.lower()
             }
             
             try:
@@ -97,12 +107,13 @@ with col2:
                 st.warning("Using mock data for demonstration purposes. Please check your API connection.")
                 # For demo purposes, use mock data if API fails
                 st.session_state.prediction = {
-                    "predicted_price": 467145,
-                    "confidence_interval": [420430.5, 513859.5],
+                    "predicted_final_result": 0.9,
+                    "confidence_interval": [0, 1],
                     "features_importance": {
-                        "sqft": 0.43,
-                        "location": 0.27,
-                        "bathrooms": 0.15
+                        "theory_hours": 1152,
+                        "lab_hours": 1152,
+                        "selfassessment": "Poor",
+                        "number_full_exam_done": 5
                     },
                     "prediction_time": "0.12 seconds"
                 }
@@ -112,9 +123,9 @@ with col2:
     if "prediction" in st.session_state:
         pred = st.session_state.prediction
         
-        # Format the predicted price
-        formatted_price = "${:,.0f}".format(pred["predicted_price"])
-        st.markdown(f'<div class="prediction-value">{formatted_price}</div>', unsafe_allow_html=True)
+        # Format the predicted final_result
+        formatted_final_result = "${:,.0f}".format(pred["predicted_final_result"])
+        st.markdown(f'<div class="prediction-value">{formatted_final_result}</div>', unsafe_allow_html=True)
         
         # Display confidence score and model used
         col_a, col_b = st.columns(2)
@@ -130,11 +141,11 @@ with col2:
             st.markdown('<p class="info-value">XGBoost</p>', unsafe_allow_html=True)
             st.markdown('</div>', unsafe_allow_html=True)
         
-        # Display price range and prediction time
+        # Display final_result range and prediction time
         col_c, col_d = st.columns(2)
         with col_c:
             st.markdown('<div class="info-card">', unsafe_allow_html=True)
-            st.markdown('<p class="info-label">Price Range</p>', unsafe_allow_html=True)
+            st.markdown('<p class="info-label">Certified Kubestronaut</p>', unsafe_allow_html=True)
             lower = "${:,.1f}".format(pred["confidence_interval"][0])
             upper = "${:,.1f}".format(pred["confidence_interval"][1])
             st.markdown(f'<p class="info-value">{lower} - {upper}</p>', unsafe_allow_html=True)
@@ -148,11 +159,11 @@ with col2:
         
         # Top factors
         st.markdown('<div class="top-factors">', unsafe_allow_html=True)
-        st.markdown("<p><strong>Top Factors Affecting Price:</strong></p>", unsafe_allow_html=True)
+        st.markdown("<p><strong>Top Factors Affecting the Final Result:</strong></p>", unsafe_allow_html=True)
         st.markdown("""
         <ul>
-            <li>Square Footage</li>
-            <li>Number of Bedrooms/Bathrooms</li>
+            <li>Layer 8 error</li>
+            <li>Model drift</li>
         </ul>
         """, unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
@@ -160,7 +171,7 @@ with col2:
         # Display placeholder message
         st.markdown("""
         <div style="display: flex; height: 300px; align-items: center; justify-content: center; color: #6b7280; text-align: center;">
-            Fill out the form and click "Predict Price" to see the estimated house price.
+            Fill out the form and click "Predict Kubestronaut Results" to see the estimated Kubestronaut results.
         </div>
         """, unsafe_allow_html=True)
     
@@ -171,8 +182,8 @@ st.markdown("<hr>", unsafe_allow_html=True)  # Add a horizontal line for separat
 st.markdown(
     """
     <div style="text-align: center; color: gray; margin-top: 20px;">
-        <p><strong>Built for MLOps Bootcamp</strong></p>
-        <p>by <a href="https://www.schoolofdevops.com" target="_blank">School of Devops</a></p>
+        <p><strong>Built with love for MLOps testing</strong></p>
+        <p>by <a href="https://delaparlaalcluster.org" target="_blank">De la parla al cluster</a></p>
     </div>
     """,
     unsafe_allow_html=True,

@@ -22,7 +22,8 @@ def clean_data(df):
     
     # Make a copy to avoid modifying the original dataframe
     df_cleaned = df.copy()
-    
+
+
     # Handle missing values
     for column in df_cleaned.columns:
         missing_count = df_cleaned[column].isnull().sum()
@@ -40,22 +41,22 @@ def clean_data(df):
                 df_cleaned[column] = df_cleaned[column].fillna(mode_value)
                 logger.info(f"Filled missing values in {column} with mode: {mode_value}")
     
-    # Handle outliers in theory_hours (target variable)
+    # Handle outliers in final_result (target variable)
     # Using IQR method to identify outliers
-    Q1 = df_cleaned['theory_hours'].quantile(0.25)
-    Q3 = df_cleaned['theory_hours'].quantile(0.75)
+    Q1 = df_cleaned['final_result'].quantile(0.25)
+    Q3 = df_cleaned['final_result'].quantile(0.75)
     IQR = Q3 - Q1
     lower_bound = Q1 - 1.5 * IQR
     upper_bound = Q3 + 1.5 * IQR
     
     # Filter out extreme outliers
-    outliers = df_cleaned[(df_cleaned['theory_hours'] < lower_bound) | 
-                          (df_cleaned['theory_hours'] > upper_bound)]
+    outliers = df_cleaned[(df_cleaned['final_result'] < lower_bound) | 
+                          (df_cleaned['final_result'] > upper_bound)]
     
     if not outliers.empty:
-        logger.info(f"Found {len(outliers)} outliers in theory_hours column")
-        df_cleaned = df_cleaned[(df_cleaned['theory_hours'] >= lower_bound) & 
-                                (df_cleaned['theory_hours'] <= upper_bound)]
+        logger.info(f"Found {len(outliers)} outliers in final_result column")
+        df_cleaned = df_cleaned[(df_cleaned['final_result'] >= lower_bound) & 
+                                (df_cleaned['final_result'] <= upper_bound)]
         logger.info(f"Removed outliers. New dataset shape: {df_cleaned.shape}")
     
     return df_cleaned
@@ -69,10 +70,15 @@ def process_data(input_file, output_file):
     # Load data
     df = load_data(input_file)
     logger.info(f"Loaded data with shape: {df.shape}")
-    
+
     # Clean data
     df_cleaned = clean_data(df)
-    
+    # Choose the column to normalize
+    col = 'final_result'   # <-- replace with your column name
+
+    # Apply Min-Max normalization
+    #df_cleaned[col] = (df_cleaned[col] - df_cleaned[col].min()) / (df_cleaned[col].max() - df_cleaned[col].min())
+
     # Save processed data
     df_cleaned.to_csv(output_file, index=False)
     logger.info(f"Saved processed data to {output_file}")
@@ -82,6 +88,6 @@ def process_data(input_file, output_file):
 if __name__ == "__main__":
     # Example usage
     process_data(
-        input_file="data/raw/kubestronaut-prediction-data.csv", 
-        output_file="data/processed/cleaned-kubestronaut-prediction-data.csv"
+        input_file="data/raw/kubestronaut_predictor_data.csv", 
+        output_file="data/processed/cleaned_kubestronaut_predictor_data.csv"
     )

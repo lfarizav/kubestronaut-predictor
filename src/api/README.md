@@ -1,6 +1,6 @@
 ## Intructions to build Container Image for this FastAPI App 
 
-Create the Dockerfile in the root of the source code (`house-prcice-predictor`). 
+Create the Dockerfile in the root of the source code (`kubestronaut-result-predictor`). 
 
 Following is all the information you would need to start building the container image for this app 
 
@@ -20,7 +20,7 @@ Directory structure inside the container should look like this
   requirements.txt
   /models
      /trained
-         house_price_model.pkl
+         kubestronaut_model.pkl
          preprocessor.pkl
 ```
 

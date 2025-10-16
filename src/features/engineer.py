@@ -22,22 +22,22 @@ def create_features(df):
     
     # Make a copy to avoid modifying the original dataframe
     df_featured = df.copy()
-    
+
     # Calculate house age
     current_year = datetime.now().year
-    df_featured['house_age'] = current_year - df_featured['year_built']
-    logger.info("Created 'house_age' feature")
+    df_featured['kubestronaut_age'] = current_year - df_featured['born_year']
+    logger.info("Created 'kubestronaut_age' feature")
     
     # Price per square foot
-    df_featured['price_per_sqft'] = df_featured['price'] / df_featured['sqft']
-    logger.info("Created 'price_per_sqft' feature")
+    df_featured['final_result_per_theory_hours'] = df_featured['final_result'] / df_featured['theory_hours']
+    logger.info("Created 'final_result_per_theory_hours' feature")
     
     # Bedroom to bathroom ratio
-    df_featured['bed_bath_ratio'] = df_featured['bedrooms'] / df_featured['bathrooms']
+    df_featured['number_full_exam_done_cncf_try_numbers_ratio'] = df_featured['number_full_exam_done'] / df_featured['cncf_try_numbers']
     # Handle division by zero
-    df_featured['bed_bath_ratio'] = df_featured['bed_bath_ratio'].replace([np.inf, -np.inf], np.nan)
-    df_featured['bed_bath_ratio'] = df_featured['bed_bath_ratio'].fillna(0)
-    logger.info("Created 'bed_bath_ratio' feature")
+    df_featured['number_full_exam_done_cncf_try_numbers_ratio'] = df_featured['number_full_exam_done_cncf_try_numbers_ratio'].replace([np.inf, -np.inf], np.nan)
+    df_featured['number_full_exam_done_cncf_try_numbers_ratio'] = df_featured['number_full_exam_done_cncf_try_numbers_ratio'].fillna(0)
+    logger.info("Created 'number_full_exam_done_cncf_try_numbers_ratio' feature")
     
     # Do NOT one-hot encode categorical variables here; let the preprocessor handle it
     return df_featured
@@ -47,8 +47,8 @@ def create_preprocessor():
     logger.info("Creating preprocessor pipeline")
     
     # Define feature groups
-    categorical_features = ['location', 'condition']
-    numerical_features = ['sqft', 'bedrooms', 'bathrooms', 'house_age', 'price_per_sqft', 'bed_bath_ratio']
+    categorical_features = ['location', 'selfassessment']
+    numerical_features = ['theory_hours','lab_hours', 'number_full_exam_done', 'cncf_try_numbers', 'born_year', 'kubestronaut_age', 'final_result_per_theory_hours', 'number_full_exam_done_cncf_try_numbers_ratio']
     
     # Preprocessing for numerical features
     numerical_transformer = Pipeline(steps=[
@@ -79,11 +79,11 @@ def run_feature_engineering(input_file, output_file, preprocessor_file):
     # Create features
     df_featured = create_features(df)
     logger.info(f"Created featured dataset with shape: {df_featured.shape}")
-    
+
     # Create and fit the preprocessor
     preprocessor = create_preprocessor()
-    X = df_featured.drop(columns=['price'], errors='ignore')  # Features only
-    y = df_featured['price'] if 'price' in df_featured.columns else None  # Target column (if available)
+    X = df_featured.drop(columns=['final_result'], errors='ignore')  # Features only
+    y = df_featured['final_result'] if 'final_result' in df_featured.columns else None  # Target column (if available)
     X_transformed = preprocessor.fit_transform(X)
     logger.info("Fitted the preprocessor and transformed the features")
     
@@ -93,8 +93,11 @@ def run_feature_engineering(input_file, output_file, preprocessor_file):
     
     # Save fully preprocessed data
     df_transformed = pd.DataFrame(X_transformed)
+
+    #y = (y - y.min()) / (y.max() - y.min())
+
     if y is not None:
-        df_transformed['price'] = y.values
+        df_transformed['final_result'] = y.values
     df_transformed.to_csv(output_file, index=False)
     logger.info(f"Saved fully preprocessed data to {output_file}")
     

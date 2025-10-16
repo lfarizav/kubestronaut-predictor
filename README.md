@@ -318,7 +318,11 @@ Shut down this Jupyter server (y/[n])? y
 Clean and preprocess the raw housing dataset:
 
 ```bash
+<<<<<<< HEAD
 python src/data/run_processing.py   --input data/raw/house_data.csv   --output data/processed/cleaned_house_data.csv
+=======
+python src/data/run_processing.py   --input data/raw/kubestronaut_predictor_data.csv   --output data/processed/cleaned_kubestronaut_predictor_data.csv
+>>>>>>> 888aeba85d17655cc9b76789df97b675618a47cd
 ```
 
 ---
@@ -328,7 +332,7 @@ python src/data/run_processing.py   --input data/raw/house_data.csv   --output d
 Apply transformations and generate features:
 
 ```bash
-python src/features/engineer.py   --input data/processed/cleaned_house_data.csv   --output data/processed/featured_house_data.csv   --preprocessor models/trained/preprocessor.pkl
+python src/features/engineer.py   --input data/processed/cleaned_kubestronaut_predictor_data.csv   --output data/processed/featured_kubestronaut_predictor_data.csv   --preprocessor models/trained/preprocessor.pkl
 ```
 
 ---
@@ -338,7 +342,7 @@ python src/features/engineer.py   --input data/processed/cleaned_house_data.csv 
 Train your model and log everything to MLflow:
 
 ```bash
-python src/models/train_model.py   --config configs/model_config.yaml   --data data/processed/featured_house_data.csv   --models-dir models   --mlflow-tracking-uri http://localhost:5555
+python src/models/train_model.py   --config configs/model_config.yaml   --data data/processed/featured_kubestronaut_predictor_data.csv   --models-dir models   --mlflow-tracking-uri http://localhost:5555
 ```
 
 ---
@@ -361,12 +365,18 @@ You could also test predictions with FastAPI directly using
 curl -X POST "http://localhost:8000/predict" \
 -H "Content-Type: application/json" \
 -d '{
-  "sqft": 1500,
-  "bedrooms": 3,
-  "bathrooms": 2,
+  "theory_hours": 1500,
+  "lab_hours": 1500,
+  "number_full_exam_done": 2,
+  "cncf_try_numbers": 2,
   "location": "suburban",
+<<<<<<< HEAD
   "year_built": 2000,
   "condition": fair
+=======
+  "born_year": 2000,
+  "selfassessment": "poor"
+>>>>>>> 888aeba85d17655cc9b76789df97b675618a47cd
 }'
 
 ```

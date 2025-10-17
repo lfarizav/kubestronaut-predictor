@@ -144,8 +144,8 @@ jobs:
      run: |
       COMMIT_HASH=$(echo $GITHUB_SHA | cut -c1-7)
       echo "Using DockerHub username: $DOCKERHUB_USERNAME"
-      docker build -t docker.io/${DOCKERHUB_USERNAME}/kubestronaut-model:${COMMIT_HASH} -f Dockerfile .
-      docker run -d -p 8000:8000 --name test-api docker.io/${DOCKERHUB_USERNAME}/kubestronaut-model:${COMMIT_HASH}
+      docker build -t docker.io${DOCKERHUB_USERNAME}/kubestronaut-model:${COMMIT_HASH} -f Dockerfile .
+      docker run -d -p 8000:8000 --name test-api docker.io${DOCKERHUB_USERNAME}/kubestronaut-model:${COMMIT_HASH}
        for i in {1..10}; do
          curl -f http://localhost:8000/health && break || sleep 5;
        done
@@ -164,6 +164,6 @@ jobs:
    - name: Push Docker image to DockerHub
      run: |
        COMMIT_HASH=$(echo $GITHUB_SHA | cut -c1-7)
-       docker tag docker.io/${{ vars.DOCKERHUB_USERNAME }}/kubestronaut-model:${COMMIT_HASH} docker.io/${{ vars.DOCKERHUB_USERNAME }}/kubestronaut-model:latest
-       docker push docker.io/${{ vars.DOCKERHUB_USERNAME }}/kubestronaut-model:${COMMIT_HASH}
-       docker push docker.io/${{ vars.DOCKERHUB_USERNAME }}/kubestronaut-model:latest
+       docker tag docker.io${{ vars.DOCKERHUB_USERNAME }}/kubestronaut-model:${COMMIT_HASH} docker.io${{ vars.DOCKERHUB_USERNAME }}/kubestronaut-model:latest
+       docker push docker.io${{ vars.DOCKERHUB_USERNAME }}/kubestronaut-model:${COMMIT_HASH}
+       docker push docker.io${{ vars.DOCKERHUB_USERNAME }}/kubestronaut-model:latest

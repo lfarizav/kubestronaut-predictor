@@ -177,6 +177,22 @@ curl -X POST "http://localhost:8000/predict" \
 
 Be sure to replace `http://localhost:8000/predict` with actual endpoint based on where its running. 
 
+## Create Continuous Integration (CI) using GitHub Actions
+
+### Create the folder .github/workflows
+Inside the main folder, create a hidden folder
+
+```bash
+cd ~/kubestronaut-predictor
+mkdir .github
+cd .github
+mkdir workflows
+cd workflows
+```
+Inside the .github/workflows folder we create the *.yaml files with the pipeline that GitHub execute once a push o merge request is performed.
+
+## Create Continuous Deployment (CD) using Flux
+We follow good practices, in this project we organiza code and  infrastructure in different GitHub repositories. In total we have 3 repositories: kubestronaut-predictor with the code, kubestronaut-predictor-deploy with the infrastructure code, and kubestronaut-predictor-fleet with the information of flux when a bootstrap is executed.
 
 ## 🧠 Learn More About MLOps
 

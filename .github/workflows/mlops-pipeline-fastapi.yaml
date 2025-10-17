@@ -119,7 +119,7 @@ jobs:
        docker stop mlflow-server || true
        docker rm mlflow-server || true
 
- build-and-publish:
+ build-and-publish-fastapi:
    needs: model-training
    runs-on: ubuntu-latest
    env:

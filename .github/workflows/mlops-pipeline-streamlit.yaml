@@ -2,12 +2,10 @@
 name: Build and Push Streamlit App
 
 on:
-  workflow_dispatch:   # run manually from GitHub Actions UI
-  push:
-    branches: [ main ] # optional: auto-run on push to main
+  workflow_dispatch: {}
 
 jobs:
-  build-and-push:
+  build-and-push-streamlit:
     runs-on: ubuntu-latest
 
     env:

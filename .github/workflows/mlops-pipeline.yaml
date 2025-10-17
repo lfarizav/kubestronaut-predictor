@@ -122,7 +122,9 @@ jobs:
  build-and-publish:
    needs: model-training
    runs-on: ubuntu-latest
-
+   env:
+      DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}   # <-- from Variables
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}       # <-- from Secrets
    steps:
    - name: Checkout code
      uses: actions/checkout@v2

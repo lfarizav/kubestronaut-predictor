@@ -33,7 +33,7 @@ jobs:
         working-directory: streamlit_app   # key: build inside this folder
         run: |
           COMMIT_HASH=$(echo $GITHUB_SHA | cut -c1-7)
-          IMAGE_NAME=docker.io/${DOCKERHUB_USERNAME}/kubestronaut_streamlit
+          IMAGE_NAME=docker.io/${DOCKERHUB_USERNAME}/kubestronautstreamlit
 
           echo "Building image: ${IMAGE_NAME}:${COMMIT_HASH}"
           docker build -t ${IMAGE_NAME}:${COMMIT_HASH} -f Dockerfile .

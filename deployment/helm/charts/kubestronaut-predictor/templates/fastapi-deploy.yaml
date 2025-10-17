@@ -2,22 +2,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: model
-  name: model
+    app: kubestronaut_fastapi
+  name: kubestronaut_fastapi
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: model
+      app: kubestronaut_fastapi
   strategy: {}
   template:
     metadata:
       labels:
-        app: model
+        app: kubestronaut_fastapi
     spec:
       containers:
-      - image: lfarizav/house-price-model
-        name: house-price-model
+      - image: "{{ .Values.fastapi.repository }}:{{ .Values.fastapi.tag }}"
+        name: kubestronaut_fastapi
         ports:
         - containerPort: 8000
         resources: {}

@@ -2,22 +2,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: streamlit
-  name: streamlit
+    app: kubestronaut_streamlit
+  name: kubestronaut_streamlit
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: streamlit
+      app: kubestronaut_streamlit
   strategy: {}
   template:
     metadata:
       labels:
-        app: streamlit
+        app: kubestronaut_streamlit
     spec:
       containers:
-      - image: lfarizav/streamlit
-        name: streamlit
+      - image: "{{ .Values.streamlit.repository }}:{{ .Values.streamlit.tag }}"
+        name: kubestronaut_streamlit
         ports:
         - containerPort: 8501
         resources: {}

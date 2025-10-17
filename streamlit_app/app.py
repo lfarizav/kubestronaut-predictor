@@ -42,7 +42,7 @@ with col1:
     # number_full_exam_done and cncf_try_numbers: in two columns
     number_full_exam_done, cncf_try_numbers = st.columns(2)
     with number_full_exam_done:
-        st.markdown("<p><strong>Number full exams done</strong></p>", unsafe_allow_html=True)
+        st.markdown("<p><strong>Number mockup full exams done</strong></p>", unsafe_allow_html=True)
         number_full_exam_done = st.selectbox("", options=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], index=8, label_visibility="collapsed")
     
     with cncf_try_numbers:

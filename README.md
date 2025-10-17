@@ -61,8 +61,8 @@ To begin, ensure the following tools are installed on your system:
 2. **Clone your forked copy:**
 
    ```bash
-   git clone https://github.com/lfarizav/kubestronaut-certification-predictor.git
-   cd kubestronaut-certification-predictor
+   git clone https://github.com/lfarizav/kubestronaut-predictor.git
+   cd kubestronaut-predictor
    ```
 
 3. **Setup Python Virtual Environment using UV:**
@@ -193,6 +193,11 @@ Inside the .github/workflows folder we create the *.yaml files with the pipeline
 
 ## Create Continuous Deployment (CD) using Flux
 We follow good practices, in this project we organiza code and  infrastructure in different GitHub repositories. In total we have 3 repositories: kubestronaut-predictor with the code, kubestronaut-predictor-deploy with the infrastructure code, and kubestronaut-predictor-fleet with the information of flux when a bootstrap is executed.
+
+```bash
+git clone https://github.com/lfarizav/kubestronaut-predictor-fleet.git
+
+```
 
 ## 🧠 Learn More About MLOps
 

@@ -23,13 +23,13 @@ jobs:
       - name : Run Data Processing Tests
         run: |
           python src/data/run_processing.py \
-          --input data/raw/house_data.csv \
-          --output data/processed/cleaned_house_data.csv
+          --input data/raw/kubestronaut_predictor_data.csv \
+          --output data/processed/cleaned_kubestronaut_predictor_data.csv
       - name: Do Feature Engineering
         run: |
           python src/features/engineer.py \
-          --input data/processed/cleaned_house_data.csv \
-          --output data/processed/featured_house_data.csv \
+          --input data/processed/cleaned_kubestronaut_predictor_data.csv \
+          --output data/processed/featured_kubestronaut_predictor_data.csv \
           --preprocessor models/trained/preprocessor.pkl
       - name: Setup MLflow Server
         run: |
@@ -42,7 +42,7 @@ jobs:
         run: |
           python src/models/train_model.py \
           --config configs/model_config.yaml \
-          --data data/processed/featured_house_data.csv \
+          --data data/processed/featured_kubestronaut_predictor_data.csv \
           --models-dir models \
           --mlflow-tracking-uri http://localhost:5555
       - name: Cleanup MLflow Server

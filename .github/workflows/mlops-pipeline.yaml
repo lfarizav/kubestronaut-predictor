@@ -40,21 +40,21 @@ jobs:
    - name: Process data
      run: |
        python src/data/run_processing.py \
-       --input data/raw/house_data.csv \
-       --output data/processed/cleaned_house_data.csv
+       --input data/raw/kubestronaut_predictor_data.csv \
+       --output data/processed/cleaned_kubestronaut_predictor_data.csv
 
    - name: Engineer features
      run: |
        python src/features/engineer.py \
-       --input data/processed/cleaned_house_data.csv \
-       --output data/processed/featured_house_data.csv \
+       --input data/processed/cleaned_kubestronaut_predictor_data.csv \
+       --output data/processed/featured_kubestronaut_predictor_data.csv \
        --preprocessor models/trained/preprocessor.pkl
 
    - name: Upload processed data
      uses: actions/upload-artifact@v4
      with:
        name: processed-data
-       path: data/processed/featured_house_data.csv
+       path: data/processed/featured_kubestronaut_predictor_data.csv
 
    - name: Upload preprocessor
      uses: actions/upload-artifact@v4
@@ -104,7 +104,7 @@ jobs:
      run: |
        mkdir -p models
        python src/models/train_model.py --config configs/model_config.yaml \
-       --data data/processed/featured_house_data.csv \
+       --data data/processed/featured_kubestronaut_predictor_data.csv \
        --models-dir models \
        --mlflow-tracking-uri http://localhost:5000
 
@@ -143,8 +143,8 @@ jobs:
    - name: Build and test Docker image
      run: |
        COMMIT_HASH=$(echo $GITHUB_SHA | cut -c1-7)
-       docker build -t docker.io/${{ vars.DOCKERHUB_USERNAME }}/house-price-model:${COMMIT_HASH} -f Dockerfile .
-       docker run -d -p 8000:8000 --name test-api docker.io/${{ vars.DOCKERHUB_USERNAME }}/house-price-model:${COMMIT_HASH}
+       docker build -t docker.io/${{ vars.DOCKERHUB_USERNAME }}/kubestronaut-model:${COMMIT_HASH} -f Dockerfile .
+       docker run -d -p 8000:8000 --name test-api docker.io/${{ vars.DOCKERHUB_USERNAME }}/kubestronaut-model:${COMMIT_HASH}
        for i in {1..10}; do
          curl -f http://localhost:8000/health && break || sleep 5;
        done
@@ -163,6 +163,6 @@ jobs:
    - name: Push Docker image to DockerHub
      run: |
        COMMIT_HASH=$(echo $GITHUB_SHA | cut -c1-7)
-       docker tag docker.io/${{ vars.DOCKERHUB_USERNAME }}/house-price-model:${COMMIT_HASH} docker.io/${{ vars.DOCKERHUB_USERNAME }}/house-price-model:latest
-       docker push docker.io/${{ vars.DOCKERHUB_USERNAME }}/house-price-model:${COMMIT_HASH}
-       docker push docker.io/${{ vars.DOCKERHUB_USERNAME }}/house-price-model:latest
+       docker tag docker.io/${{ vars.DOCKERHUB_USERNAME }}/kubestronaut-model:${COMMIT_HASH} docker.io/${{ vars.DOCKERHUB_USERNAME }}/kubestronaut-model:latest
+       docker push docker.io/${{ vars.DOCKERHUB_USERNAME }}/kubestronaut-model:${COMMIT_HASH}
+       docker push docker.io/${{ vars.DOCKERHUB_USERNAME }}/kubestronaut-model:latest

@@ -6,13 +6,13 @@ import os
 
 # Set the page configuration (must be the first Streamlit command)
 st.set_page_config(
-    page_title="Certified Kubestronaut Result Predictor",
+    page_title="Certified Kubestronaut Predictor",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
 # Add title and description
-st.title("Certified Kubestronaut Result Predictor")
+st.title("Certified Kubestronaut Predictor")
 st.markdown(
     """
     <p style="font-size: 18px; color: gray;">
@@ -63,14 +63,14 @@ with col1:
     selfassessment = st.selectbox("", options=["Good", "Excelent", "Fair", "Poor"], index=1, label_visibility="collapsed")
     
     # Predict button
-    predict_button = st.button("Predict Kubestronaut Results", use_container_width=True)
+    predict_button = st.button("Kubestronaut Predictor", use_container_width=True)
     
     st.markdown('</div>', unsafe_allow_html=True)
 
 # Results section
 with col2:
     st.markdown('<div class="card">', unsafe_allow_html=True)
-    st.markdown("<h2>Certified Kubestronaut Results</h2>", unsafe_allow_html=True)
+    st.markdown("<h2>Kubestronaut Results</h2>", unsafe_allow_html=True)
     
     # If button is clicked, show prediction
     if predict_button:

@@ -11,6 +11,7 @@ jobs:
     env:
       DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}   # from Repository → Variables
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}      # from Repository → Secrets
+      IMAGE_NAME: docker.io/${{ vars.DOCKERHUB_USERNAME }}/kubestronautstreamlit
 
     steps:
       - name: Checkout repository
@@ -32,15 +33,17 @@ jobs:
       - name: Build, tag, and push Docker image
         working-directory: streamlit_app   # key: build inside this folder
         run: |
+          # Generate timestamp and short hash
           COMMIT_HASH=$(echo $GITHUB_SHA | cut -c1-7)
-          IMAGE_NAME=docker.io/${DOCKERHUB_USERNAME}/kubestronautstreamlit
+          BUILD_DATE=$(date -u +'%Y%m%d%H%M%S')
+          IMAGE_TAG="${BUILD_DATE}-${COMMIT_HASH}"
 
-          echo "Building image: ${IMAGE_NAME}:${COMMIT_HASH}"
-          docker build -t ${IMAGE_NAME}:${COMMIT_HASH} -f Dockerfile .
+          echo "Building and pushing image: ${IMAGE_NAME}:${IMAGE_TAG}"
 
-          echo "Tagging image as latest"
-          docker tag ${IMAGE_NAME}:${COMMIT_HASH} ${IMAGE_NAME}:latest
+          docker build -t ${IMAGE_NAME}:${IMAGE_TAG} -f Dockerfile .
+          docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest
 
-          echo "Pushing images to DockerHub"
-          docker push ${IMAGE_NAME}:${COMMIT_HASH}
+          docker push ${IMAGE_NAME}:${IMAGE_TAG}
           docker push ${IMAGE_NAME}:latest
+
+          echo "Pushed: ${IMAGE_TAG} and latest"

@@ -20,5 +20,11 @@ spec:
         name: kubestronaut_fastapi
         ports:
         - containerPort: 8000
-        resources: {}
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
 status: {}

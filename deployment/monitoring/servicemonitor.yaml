@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: kubestronaut-predictor-api-monitor
+  labels:
+    release: prom
+# Match the label of your Prometheus instance as per helm release
+spec:
+  selector:
+    matchLabels:
+      app: kubestronautfastapi
+  namespaceSelector:
+    matchNames:
+      - kubestronaut-predictor # or your namespace
+  endpoints:
+    - port: "8000" # or match name of your service port
+      path: /metrics
+      interval: 15s

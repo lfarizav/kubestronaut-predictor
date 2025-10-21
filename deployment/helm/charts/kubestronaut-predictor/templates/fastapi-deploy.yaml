@@ -2,22 +2,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: kubestronaut_fastapi
-  name: kubestronaut_fastapi
+    app: kubestronautfastapi
+  name: kubestronautfastapi
 spec:
-  replicas: 2
+  replicas: {{ .Values.fastapi.replicaCount }}
   selector:
     matchLabels:
-      app: kubestronaut_fastapi
+      app: kubestronautfastapi
   strategy: {}
   template:
     metadata:
       labels:
-        app: kubestronaut_fastapi
+        app: kubestronautfastapi
     spec:
       containers:
       - image: "{{ .Values.fastapi.repository }}:{{ .Values.fastapi.tag }}"
-        name: kubestronaut_fastapi
+        name: kubestronautfastapi
         ports:
         - containerPort: 8000
         resources: {}

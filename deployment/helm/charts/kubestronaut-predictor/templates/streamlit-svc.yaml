@@ -2,17 +2,17 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: kubestronaut_streamlit
-  name: kubestronaut_streamlit
+    app: kubestronautstreamlit
+  name: kubestronautstreamlit
 spec:
   ports:
   - name: "8501"
-    nodePort: {{ .Values.service_streamlit.nodePort }}
-    port: {{ .Values.service_streamlit.port }}
+    nodePort: {{ .Values.servicestreamlit.nodePort }}
+    port: {{ .Values.servicestreamlit.port }}
     protocol: TCP
-    targetPort: {{ .Values.service_streamlit.targetPort }}
+    targetPort: {{ .Values.servicestreamlit.targetPort }}
   selector:
-    app: kubestronaut_streamlit
+    app: kubestronautstreamlit
   type: NodePort
 status:
   loadBalancer: {}

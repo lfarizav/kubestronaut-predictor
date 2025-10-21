@@ -1,9 +1,6 @@
-#Code composer to helm migration
-#Developed by: Luis Felipe Ariza Vesga
-#emails: lfarizav@gmail.com lfarizav@unal.edu.co
-apiVersion: v2 #v2 is for 
-name: k8s_open5gs
-description: Helm chart for Open5GS 4G/5G core network. K8s migration of docker_open5gs. This is a personal project to create a solution to deploy cellular networks on Kubernetes wit kata containers
+apiVersion: v2
+name: kubestronaut-predictor
+description: A Helm chart for Kubernetes
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -18,14 +15,10 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.1.7
+version: 0.1.6
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
-appVersion: "1.0.1"
-maintainers:
-  - email: lfarizav@gmail.com
-    name: Luis Felipe Ariza Vesga
-icon: https://www.col40.co/753/articles-160317_perfil.jpg
+appVersion: "1.16.0"
